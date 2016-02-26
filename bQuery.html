@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>myQuery, not yoQuery!!</title>
+</head>
+<body>
+
+  <div class="main">
+      <p>One</p>
+      <p class="stuff">Three</p>
+      <p class="stuff">Fifteen</p>
+      <ul>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+  </div>
+
+<script>
+// Constructor function; must be called with `new` keyword
+var _$ = function(selector) {
+  var elements = document.querySelectorAll(selector); // Elements stores the reference to the collection?
+  for (var i = 0; i < elements.length; i++) {
+    // array index
+    this[i] = elements[i];
+  }
+  // need length for looping
+  this.length = elements.length;
+};
+
+_$.prototype = {
+
+each: function(fn){
+  for (var i = 0; i < this.length; i++){
+    var item = this[i];
+    fn(item, i);
+  }
+  return this;
+},
+
+css: function(name, value){
+  this.each(function(element){
+    element.style[name] = value;
+  });
+  return this;
+},
+
+addClass: function(className) {
+  this.each(function(element){
+    element.classList.add(className);
+  });
+    return this;
+  },
+
+//this function is a getter/setter
+ html: function(value) {
+   if (value) {
+     this.each(function(element) {
+       element.innerHTML = value;
+     });
+
+     return this;
+   } else {
+     return this[0] ? this[0].innerHTML : "";
+   }
+ }
+
+}; //close prototype
+
+  var paragraphs = new _$('p');
+  // SHOULD return the html contents of the p's (One, Three, Fifteen)
+  alert("The contents are " + paragraphs.html()); // logs out a list of the paragraphs' classes as a collection
+  paragraphs.html('stuff');
+  // Seems to work fine, sets all p element's html to 'something'
+  //paragraphs.setHTML('something');
+
+
+//paragraphs.addClass('new-class');
+
+//paragraphs.css('color', 'red');
+
+</script>
+</body>
+</html>
