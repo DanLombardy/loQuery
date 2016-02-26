@@ -82,7 +82,6 @@ function find(predicate) {
 }
 
 /** Iterates over collection from right to left
-*
 * Also a collection method, so need to make it work with objects and move to collection.js when ready
 */
 function forEachRight(action){
