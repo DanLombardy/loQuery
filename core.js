@@ -1,5 +1,7 @@
 var arrayMethods = require(__dirname + "/arrayMethods.js");
-
+function isObject(obj) {
+  return obj === Object(obj);
+}
 var _$ = function(selector){
 
 /** Check if selector is array. If true, return array methods
@@ -40,7 +42,7 @@ var _$ = function(selector){
 /** Check if selector is an object. If true, return array methods
 *
 */
-  if (selector.constructor === Object){
+  if (isObject(selector)){
 /** Return object methods as an object
 *
 */
