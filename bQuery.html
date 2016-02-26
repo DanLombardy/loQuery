@@ -21,7 +21,7 @@
 
 <script>
 // Constructor function; must be called with `new` keyword
-var $ = function(selector) {
+var _$ = function(selector) {
   var elements = document.querySelectorAll(selector); // Elements stores the reference to the collection?
   for (var i = 0; i < elements.length; i++) {
     // array index
@@ -31,7 +31,7 @@ var $ = function(selector) {
   this.length = elements.length;
 };
 
-$.prototype = {
+_$.prototype = {
 
 each: function(fn){
   for (var i = 0; i < this.length; i++){
@@ -70,7 +70,7 @@ addClass: function(className) {
 
 }; //close prototype
 
-  var paragraphs = new $('p');
+  var paragraphs = new _$('p');
   // SHOULD return the html contents of the p's (One, Three, Fifteen)
   alert("The contents are " + paragraphs.html()); // logs out a list of the paragraphs' classes as a collection
   paragraphs.html('stuff');
